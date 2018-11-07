@@ -1,0 +1,16 @@
+{
+  "name": "sails-hook-exception-handling",
+  "version": "0.1.0",
+  "description": "Forget about the try/catch in the middlewares",
+  "main": "index.js",
+  "sails": {
+    "isHook": true
+  },
+  "devDependencies": {
+    "sails": "~1.0.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "@josebaseba"
+}

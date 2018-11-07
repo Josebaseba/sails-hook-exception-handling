@@ -13,7 +13,7 @@ Sails v1.0 >= required, responses hook must be enabled.
 ## Usage
 
 ```javascript
-await User.update({ email: 'foo@foo.com' }, { username: 'alreadyTakenEmail@foo.com' }) // throws {code: E_UNIQUE} error
+await User.update({ email: 'foo@foo.com' }, { email: 'alreadyTakenEmail@foo.com' }) // throws {code: E_UNIQUE} error
 ```
 
 ```javascript
@@ -35,6 +35,24 @@ This hooks will manage al the Waterline errors, sending to the user the error wi
 ```
 
 All the unnexpected errors will be handled as status 500, with res.serverError(err) default method.
+
+Check [.tolerate()](https://sailsjs.com/documentation/reference/waterline-orm/queries/tolerate) and [.intercept()](https://sailsjs.com/documentation/reference/waterline-orm/queries/intercept) for advanced use.
+
+```javascript
+// Customize errors
+await User.update({ email: 'foo@foo.com' }, { username: 'alreadyTakenEmail@foo.com' }).intercept('E_UNIQUE', (err) => {
+  err.text = 'Email already taken';
+  return err;
+});
+
+// Don't throw the error
+let user = await User.create({ email: 'foo@foo.com', name: 'Joe' }).tolerate('E_UNIQUE').fetch();
+
+if (!user) { 
+  user = (await User.update({ email: 'foo@foo.com'}, { name: 'Joe' }).fetch())[0];
+}
+
+```
 
 ## Test
 

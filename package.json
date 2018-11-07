@@ -12,5 +12,27 @@
   "scripts": {
     "test": "mocha"
   },
-  "author": "@josebaseba"
+  "author": "@josebaseba",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Josebaseba/sails-hook-exception-handling.git"
+  },
+  "keywords": [
+    "sails",
+    "hook",
+    "exception",
+    "try",
+    "catch",
+    "controller",
+    "middleware"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Josebaseba/sails-hook-exception-handling/issues"
+  },
+  "homepage": "https://github.com/Josebaseba/sails-hook-exception-handling#readme"
 }

@@ -26,6 +26,9 @@ describe('Testing error-handle hook ::', function () {
         'get /forbidden': (req, res) => {
           throw 'forbidden';
         },
+        'get /unexpected': (req, res) => {
+          throw 'invalid response thrown';
+        },
         'get /e-unique': (req, res) => {
           throw { code: 'E_UNIQUE' };
         },
@@ -80,6 +83,13 @@ describe('Testing error-handle hook ::', function () {
   it('throw error 404 notFound', function (done) {
     sails.request('/not-found', (err) => {
       if (err.status === 404) { return done(); }
+      return done(err);
+    });
+  });
+
+  it('throw error 500 kikogordo', function (done) {
+    sails.request('/unexpected', (err) => {
+      if (err.status === 500) { return done(); }
       return done(err);
     });
   });
